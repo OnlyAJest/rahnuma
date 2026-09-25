@@ -1,0 +1,405 @@
+/* =====================================================================
+   RAHNUMA STYLES
+   Colours are defined once at the top – change them there.
+   The site is designed for small phone screens first.
+   ===================================================================== */
+
+:root {
+  --green:        #0b5d4b;   /* main colour: header, links, headings */
+  --green-dark:   #07463a;
+  --green-light:  #e3f1ec;
+  --page:         #faf7f0;   /* page background */
+  --card:         #ffffff;
+  --text:         #1c2321;
+  --muted:        #5b6663;
+  --border:       #ddd8cc;
+  --warn-bg:      #fff4dc;
+  --warn-border:  #e8b64c;
+  --whatsapp:     #1e8e3e;
+
+  --radius: 12px;
+  --urdu-font: "Noto Naskh Arabic", "Noto Naskh Arabic UI", "Segoe UI", Tahoma, "Geeza Pro", sans-serif;
+  --english-font: system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+}
+
+* { box-sizing: border-box; }
+
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+  margin: 0;
+  background: var(--page);
+  color: var(--text);
+  font-family: var(--english-font);
+  font-size: 18px;          /* large text by default */
+  line-height: 1.6;
+}
+
+/* Urdu needs a bigger size and more line spacing to read comfortably */
+html[lang="ur"] body {
+  font-family: var(--urdu-font);
+  font-size: 20px;
+  line-height: 2;
+}
+
+main {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 16px;
+}
+
+a { color: var(--green); }
+
+h1, h2, h3 { line-height: 1.4; margin: 0 0 12px; }
+h1 { font-size: 1.5em; }
+h2 { font-size: 1.2em; }
+h3 { font-size: 1.05em; margin-top: 16px; }
+
+/* ---------- Header ---------- */
+
+.site-header {
+  background: var(--green);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 10px 16px;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.logo {
+  color: #fff;
+  font-size: 1.4em;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.lang-btn {
+  background: #fff;
+  color: var(--green-dark);
+  border: 0;
+  border-radius: 999px;
+  padding: 8px 18px;
+  font-size: 18px;
+  font-weight: 700;
+  min-height: 44px;           /* easy to tap */
+  cursor: pointer;
+}
+/* The button shows the OTHER language, so use that language's font */
+html[lang="en"] .lang-btn { font-family: var(--urdu-font); }
+html[lang="ur"] .lang-btn { font-family: var(--english-font); }
+
+/* ---------- Home page ---------- */
+
+.hero {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 16px;
+  margin-bottom: 8px;
+}
+.hero h1 { color: var(--green-dark); font-size: 1.25em; }
+.hero label { display: block; font-weight: 700; margin-bottom: 6px; }
+
+#search {
+  width: 100%;
+  font: inherit;
+  padding: 12px 14px;
+  border: 2px solid var(--green);
+  border-radius: var(--radius);
+  background: #fff;
+  min-height: 52px;
+}
+#search:focus { outline: 3px solid var(--green-light); }
+
+.no-results {
+  background: var(--warn-bg);
+  border: 1px solid var(--warn-border);
+  border-radius: var(--radius);
+  padding: 12px 16px;
+}
+
+.icon { font-size: 1.2em; }
+
+.small-heading {
+  font-size: 0.95em;
+  color: var(--muted);
+  margin: 20px 0 8px;
+}
+
+/* Quick-link chips: a row you can swipe sideways */
+.chips {
+  display: flex;
+  gap: 8px;
+  overflow-x: auto;
+  padding-bottom: 6px;
+  scrollbar-width: none;
+}
+.chips::-webkit-scrollbar { display: none; }
+.chip {
+  flex-shrink: 0;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  padding: 8px 14px;
+  color: var(--text);
+  text-decoration: none;
+  white-space: nowrap;
+}
+.chip:hover, .chip:focus { background: var(--green-light); }
+
+/* Topic tiles: 2 per row on phones, 3 on wider screens */
+.tiles {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+}
+@media (min-width: 560px) { .tiles { grid-template-columns: repeat(3, 1fr); } }
+.tile {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 14px;
+  min-height: 120px;
+  color: var(--text);
+  text-decoration: none;
+}
+.tile:hover, .tile:focus { background: var(--green-light); border-color: var(--green); }
+.tile-icon { font-size: 2em; line-height: 1.2; }
+.tile-title { font-weight: 700; line-height: 1.4; }
+.tile-count { font-size: 0.8em; color: var(--muted); margin-top: auto; }
+
+.topic-title { color: var(--green-dark); }
+
+.guide-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+.guide-list li + li { border-top: 1px solid var(--border); }
+.guide-list a {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 16px;
+  min-height: 56px;
+  color: var(--text);
+  text-decoration: none;
+}
+.guide-list a:hover, .guide-list a:focus { background: var(--green-light); }
+.row-icon {
+  flex-shrink: 0;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: var(--green-light);
+  display: grid;
+  place-items: center;
+  font-size: 1.2em;
+}
+.row-text { flex: 1; display: flex; flex-direction: column; }
+.row-sub { font-size: 0.8em; color: var(--muted); }
+
+/* Arrow points the right way in both languages */
+.arrow::after { content: "›"; font-size: 1.5em; color: var(--green); }
+html[dir="rtl"] .arrow::after { content: "‹"; }
+
+.about {
+  border-top: 1px solid var(--border);
+  padding-top: 16px;
+  color: var(--muted);
+}
+
+/* ---------- Guide page ---------- */
+
+.back {
+  display: inline-block;
+  margin-bottom: 8px;
+  font-weight: 700;
+  text-decoration: none;
+}
+html[dir="ltr"] .back::before { content: "← "; }
+html[dir="rtl"] .back::before { content: "→ "; }
+
+.crumb { color: var(--muted); margin: 0 0 4px; }
+.intro { font-size: 1.05em; }
+
+.key-facts {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 8px;
+  margin: 16px 0;
+}
+.key-facts div {
+  background: var(--green-light);
+  border-radius: var(--radius);
+  padding: 10px 14px;
+}
+.key-facts dt { font-size: 0.85em; color: var(--muted); }
+.key-facts dd { margin: 0; font-weight: 700; }
+
+.checked {
+  font-size: 0.9em;
+  background: var(--card);
+  border: 1px dashed var(--border);
+  border-radius: var(--radius);
+  padding: 10px 14px;
+}
+
+.block {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 16px;
+  margin: 16px 0;
+  scroll-margin-top: 72px;   /* so the sticky header doesn't cover the heading */
+}
+.block h2 { color: var(--green-dark); }
+.block ul, .block ol { margin: 0; padding-inline-start: 1.4em; }
+.block li { margin-bottom: 8px; }
+.tip, .note { color: var(--muted); font-size: 0.9em; }
+
+/* "Prices can change" note – added automatically wherever a price appears */
+.price-note {
+  font-size: 0.85em;
+  color: var(--muted);
+  background: var(--page);
+  border-radius: 8px;
+  padding: 6px 10px;
+  margin: 8px 0 0;
+}
+
+/* "Please note" box for rules that are uncertain or vary by district */
+.notes {
+  background: var(--warn-bg);
+  border: 1px solid var(--warn-border);
+  border-radius: var(--radius);
+  padding: 12px 16px;
+  margin: 16px 0;
+}
+.notes h2 { font-size: 1.05em; margin-bottom: 6px; }
+.notes ul { margin: 0; padding-inline-start: 1.4em; }
+.notes li { margin-bottom: 6px; }
+
+/* Document checklist with big tick boxes */
+.block ul.checklist { list-style: none; padding: 0; }
+.checklist label { display: flex; gap: 12px; align-items: flex-start; cursor: pointer; }
+.checklist input {
+  width: 24px;
+  height: 24px;
+  margin-top: 0.3em;
+  flex-shrink: 0;
+  accent-color: var(--green);
+}
+.checklist input:checked + span { color: var(--muted); text-decoration: line-through; }
+
+/* Numbered steps */
+.block ol.steps { padding-inline-start: 1.6em; }
+.steps li::marker { font-weight: 700; color: var(--green); }
+
+/* Tables scroll sideways on small phones instead of breaking the page */
+.table-wrap { overflow-x: auto; margin-bottom: 8px; }
+table { border-collapse: collapse; width: 100%; min-width: 280px; }
+th, td {
+  border: 1px solid var(--border);
+  padding: 8px 10px;
+  text-align: start;
+  vertical-align: top;
+}
+th { background: var(--green-light); }
+
+.warn li { background: var(--warn-bg); border-inline-start: 4px solid var(--warn-border); padding: 6px 10px; list-style: none; }
+.block ul.warn { padding: 0; }
+
+details {
+  border-bottom: 1px solid var(--border);
+  padding: 8px 0;
+}
+summary { cursor: pointer; font-weight: 700; min-height: 44px; }
+details p { margin: 8px 0 0; }
+
+.contacts li span { display: block; }
+.block ul.contacts, .block ul.related, .block ul.sources { list-style: none; padding: 0; }
+.sources { font-size: 0.85em; }
+.sources a { word-break: break-word; }
+
+.share {
+  display: block;
+  text-align: center;
+  background: var(--whatsapp);
+  color: #fff;
+  font-weight: 700;
+  text-decoration: none;
+  border-radius: var(--radius);
+  padding: 14px;
+  margin: 16px 0;
+}
+
+/* ---------- Jump buttons on the guide page ---------- */
+
+.tabs {
+  position: sticky;
+  top: 64px;                /* just under the green header */
+  z-index: 5;
+  display: flex;
+  gap: 6px;
+  overflow-x: auto;
+  background: var(--page);
+  padding: 8px 0;
+  margin: 8px 0 4px;
+  border-bottom: 1px solid var(--border);
+  scrollbar-width: none;
+}
+.tabs::-webkit-scrollbar { display: none; }
+.tab {
+  flex-shrink: 0;
+  padding: 8px 14px;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  background: var(--card);
+  color: var(--text);
+  text-decoration: none;
+  white-space: nowrap;
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+.tab.active {
+  background: var(--green);
+  border-color: var(--green);
+  color: #fff;
+  font-weight: 700;
+}
+
+/* Each section leaves room for the sticky header + button row when jumped to */
+.panel { scroll-margin-top: 130px; }
+
+/* Eligibility lists */
+.block ul.yes-list, .block ul.no-list { list-style: none; padding: 0; }
+.yes-list li::before { content: "✔ "; color: var(--green); font-weight: 700; }
+.no-list li::before { content: "✖ "; color: #b3261e; font-weight: 700; }
+
+/* ---------- Footer ---------- */
+
+.site-footer {
+  max-width: 720px;
+  margin: 24px auto 0;
+  padding: 16px 16px 32px;
+  color: var(--muted);
+  font-size: 0.85em;
+  text-align: center;
+}
+
+[hidden] { display: none !important; }
