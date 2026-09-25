@@ -391,6 +391,137 @@ details p { margin: 8px 0 0; }
 .yes-list li::before { content: "✔ "; color: var(--green); font-weight: 700; }
 .no-list li::before { content: "✖ "; color: #b3261e; font-weight: 700; }
 
+/* ---------- Feedback page ---------- */
+
+/* "Give feedback" / "Report a change" switch */
+.switch {
+  display: flex;
+  gap: 8px;
+  margin: 12px 0;
+}
+.switch a {
+  flex: 1;
+  text-align: center;
+  padding: 10px;
+  border: 2px solid var(--green);
+  border-radius: var(--radius);
+  color: var(--green-dark);
+  background: var(--card);
+  text-decoration: none;
+  font-weight: 700;
+}
+.switch a.active { background: var(--green); color: #fff; }
+
+.form label, .form legend {
+  display: block;
+  font-weight: 700;
+  margin: 18px 0 6px;
+}
+.form label:first-child { margin-top: 0; }
+.form .optional { font-weight: 400; color: var(--muted); font-size: 0.85em; }
+.form select, .form textarea, .form input[type="text"] {
+  width: 100%;
+  font: inherit;
+  padding: 10px 12px;
+  border: 2px solid var(--border);
+  border-radius: var(--radius);
+  background: #fff;
+  min-height: 48px;
+}
+.form select:focus, .form textarea:focus, .form input[type="text"]:focus {
+  border-color: var(--green);
+  outline: 3px solid var(--green-light);
+}
+.form fieldset { border: 0; padding: 0; margin: 0; }
+.form .tip { margin: 0 0 6px; }
+
+/* Five big faces for "How satisfied are you?" */
+.faces { display: grid; grid-template-columns: repeat(5, 1fr); gap: 6px; }
+.face {
+  display: flex !important;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  margin: 0 !important;
+  padding: 8px 2px;
+  border: 2px solid var(--border);
+  border-radius: var(--radius);
+  cursor: pointer;
+  font-weight: 400 !important;
+  text-align: center;
+  position: relative;   /* keeps the hidden radio button inside the face */
+}
+.face input { position: absolute; opacity: 0; pointer-events: none; }
+.face-icon { font-size: 1.8em; line-height: 1.2; }
+.face-label { font-size: 0.7em; line-height: 1.3; color: var(--muted); }
+.face:has(input:checked) { border-color: var(--green); background: var(--green-light); }
+.face:has(input:focus-visible) { outline: 3px solid var(--green); }
+
+/* Tick boxes for "What has changed?" */
+.choices { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 6px; }
+.choice {
+  display: flex !important;
+  gap: 8px;
+  align-items: center;
+  margin: 0 !important;
+  padding: 8px 10px;
+  border: 2px solid var(--border);
+  border-radius: var(--radius);
+  font-weight: 400 !important;
+  cursor: pointer;
+}
+.choice input { width: 22px; height: 22px; accent-color: var(--green); flex-shrink: 0; }
+.choice:has(input:checked) { border-color: var(--green); background: var(--green-light); }
+
+.privacy { font-size: 0.85em; color: var(--muted); margin: 16px 0 8px; }
+/* Hidden spam trap. Hidden in place (not pushed off-screen, which breaks Urdu right-to-left pages) */
+.form input.trap {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  min-height: 0;
+  padding: 0;
+  border: 0;
+  overflow: hidden;
+  clip-path: inset(50%);
+  opacity: 0;
+  pointer-events: none;
+}
+.fb-error {
+  background: var(--warn-bg);
+  border: 1px solid var(--warn-border);
+  border-radius: var(--radius);
+  padding: 10px 14px;
+}
+.submit {
+  width: 100%;
+  font: inherit;
+  font-weight: 700;
+  font-size: 1.1em;
+  color: #fff;
+  background: var(--green);
+  border: 0;
+  border-radius: var(--radius);
+  padding: 14px;
+  min-height: 52px;
+  cursor: pointer;
+}
+.submit:disabled { opacity: 0.6; cursor: wait; }
+
+.thanks h2 { color: var(--green-dark); }
+.next-link {
+  display: block;
+  padding: 12px;
+  margin-top: 8px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  text-decoration: none;
+  font-weight: 700;
+}
+
+/* "Something wrong on this page? Tell us." inside the Last checked box */
+.report-link { display: block; margin-top: 6px; font-weight: 700; text-decoration: none; }
+
 /* ---------- Footer ---------- */
 
 .site-footer {
@@ -403,3 +534,5 @@ details p { margin: 8px 0 0; }
 }
 
 [hidden] { display: none !important; }
+.site-footer p { margin: 0 0 8px; }
+.site-footer a { font-weight: 700; text-decoration: none; }

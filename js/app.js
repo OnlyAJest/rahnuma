@@ -10,6 +10,7 @@
 //   3. Home page (topic tiles, topic lists, search)
 //   4. Guide page (sections + jump buttons)
 //   5. Start-up
+//   (The feedback page lives in feedback.js.)
 // =====================================================================
 
 // Every guide file adds itself to this object: GUIDES["cnic-new"] = {...}
@@ -159,14 +160,16 @@ function guideRow(guide, category) {
     </li>`;
 }
 
-// Common page parts (header + footer text) for both pages.
+// Common page parts (header + footer) for every page.
 function renderFrame() {
   document.documentElement.lang = lang;
   document.documentElement.dir = lang === "ur" ? "rtl" : "ltr";
   document.getElementById("logo").textContent = t(UI.siteName);
   document.getElementById("logo").href = pageLink("index.html");
   document.getElementById("lang-btn").textContent = t(UI.switchLang);
-  document.getElementById("footer").textContent = t(UI.footer);
+  document.getElementById("footer").innerHTML = `
+    <p>${t(UI.footer)}</p>
+    <a href="${pageLink("feedback.html")}">💬 ${t(UI.fbFooterLink)}</a>`;
 }
 
 
@@ -323,6 +326,7 @@ function buildTabs(data, guide) {
     <p class="checked">
       <strong>${t(UI.lastChecked)} ${formatDate(data.lastChecked)}${lang === "ur" ? "۔" : "."}</strong>
       ${t(UI.disclaimer)}
+      <a class="report-link" href="${pageLink("feedback.html", null, { type: "report", guide: currentGuideId() })}">✏️ ${t(UI.fbReportThisPage)}</a>
     </p>`;
   const shareText = encodeURIComponent(t(guide.title) + "\n" + location.href.split("#")[0]);
   summary += `<a class="share" href="https://wa.me/?text=${shareText}" target="_blank" rel="noopener">${t(UI.share)}</a>`;
@@ -499,6 +503,8 @@ function renderPage() {
   renderFrame();
   if (document.body.dataset.page === "home") {
     renderHome();
+  } else if (document.body.dataset.page === "feedback") {
+    renderFeedback();   // in feedback.js
   } else if (GUIDES[currentGuideId()]) {
     renderGuide();   // guide already loaded – just redraw in the new language
   } else {

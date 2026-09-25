@@ -21,6 +21,7 @@ no frameworks, no build step, about 11 KB (compressed) for the home page.
 ## How the files fit together
 
 ```
+feedback.html        Feedback and "report a change" forms
 index.html           Home page: search, quick links, topic tiles
                      (index.html?cat=welfare shows one topic's guides)
 guide.html           One page that shows ANY guide, with jump buttons at the top:
@@ -29,6 +30,8 @@ css/style.css        All the styling. Colours are at the top.
 js/ui-text.js        Words on buttons and headings, in English and Urdu
 js/guides-list.js    The menu: categories, guide titles, search keywords
 js/app.js            The code that builds the pages (rarely needs editing)
+js/feedback.js       The code for the feedback page
+js/settings.js       Your settings: where feedback is sent
 guides/*.js          The content – one file per guide
 guides/_template.js  Copy this to make a new guide
 ```
@@ -75,6 +78,34 @@ with "Rs", "USD", "روپے" or "ڈالر") gets a "prices can change" note unde
 
 **A source that isn't a website** (e.g. information from teachers) – add it to `sources`
 without a `url` and it shows as plain text.
+
+## Feedback and "report a change"
+
+`feedback.html` has two forms:
+- **Give feedback** – what they wanted help with, how satisfied they are (5 faces), and optional comments.
+- **Report a change** – which guide is wrong, what changed (fee, documents, steps…), details,
+  how they know, and optional contact details.
+
+Every guide page links to the report form for that guide ("Something wrong or out of date on this
+page?"), and the footer on every page links to the feedback page.
+
+**To start receiving messages** (the site has no server, so a free service collects them):
+1. Make a free account at [formspree.io](https://formspree.io) and click **New form**.
+2. Copy the form's address – it looks like `https://formspree.io/f/abcdwxyz`.
+3. Paste it into `feedbackEndpoint` in `js/settings.js`.
+
+Each message then arrives in your email and in your Formspree dashboard (free plan: 50 a month).
+Sign up for Formspree with the Gmail address in `feedbackEmail` (in the same file) so messages arrive there.
+If the form can't be sent, people get a button that opens their email app with the message already
+written, addressed to `feedbackEmail`.
+
+Until you add a Formspree address, every message goes through the email button instead.
+
+## Putting it online (free)
+
+- **Netlify Drop:** go to app.netlify.com/drop and drag the `rahnuma` folder onto the page.
+- **GitHub Pages:** push this folder to a GitHub repository → Settings → Pages → deploy from the main branch.
+- **Cloudflare Pages:** also works as-is; there is no build command.
 
 ## Keeping it accurate
 
