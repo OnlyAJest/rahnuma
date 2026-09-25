@@ -76,12 +76,6 @@ with "Rs", "USD", "روپے" or "ڈالر") gets a "prices can change" note unde
 **A source that isn't a website** (e.g. information from teachers) – add it to `sources`
 without a `url` and it shows as plain text.
 
-## Putting it online (free)
-
-- **Netlify Drop:** go to app.netlify.com/drop and drag the `rahnuma` folder onto the page.
-- **GitHub Pages:** push this folder to a GitHub repository → Settings → Pages → deploy from the main branch.
-- **Cloudflare Pages:** also works as-is; there is no build command.
-
 ## Keeping it accurate
 
 Every guide shows "Last checked" and its sources at the bottom. Before launch, and every few months:
