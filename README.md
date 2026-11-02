@@ -34,6 +34,7 @@ js/feedback.js       The code for the feedback page
 js/settings.js       Your settings: where feedback is sent
 guides/*.js          The content – one file per guide
 guides/_template.js  Copy this to make a new guide
+CNAME                Tells GitHub Pages to use rahnuma.site – don't delete it
 ```
 
 Every piece of text is written in both languages side by side:
